@@ -1,0 +1,31 @@
+﻿arduino_joystick is an I2C joystick device for RaspberryPi.
+It is made of Arduino Uno and Joystick Shield kit(https://www.sparkfun.com/products/9760).
+I2C level converter is mandatory to connect Arduino Uno(5V) and RaspberryPi(3.3V).
+GPIO pins are used for the input interrupt.
+(See schematic.pdf)
+
+firmware/arduino_joystick.ino
+Sketch for Arduino
+
+driver/arduino_joystick.c
+Device driver for RaspberryPi(Raspbian)
+
+How to use:
+
+1.Compile and upload arduino_joystick.ino
+
+2.Compile driver
+First, kernel needs to be buit.
+Following command makes arduino_joystick.ko
+make -C /usr/src/linux M=$PWD modules
+
+3.Install driver
+insmod arduino_joystick.ko
+
+4.Make i2c adapter detect arduino_joystick
+echo arduino_joystick 0x20 > /sys/class/i2c-adapter/i2c-1/new_device
+
+5.Test the joystick
+Joystick device appears in /dev/input.
+Following command tests the joystick.
+jstest /dev/input/js0
