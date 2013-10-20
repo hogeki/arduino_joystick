@@ -1,6 +1,6 @@
 ﻿arduino_joystick is an I2C joystick device for RaspberryPi.
 It is made of Arduino Uno and Joystick Shield kit(https://www.sparkfun.com/products/9760).
-I2C level converter is mandatory to connect Arduino Uno(5V) and RaspberryPi(3.3V).
+I2C level converter is necessary for connecting Arduino Uno(5V) and RaspberryPi(3.3V).
 GPIO pins are used for the input interrupt.
 (See schematic.pdf)
 
